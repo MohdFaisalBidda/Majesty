@@ -3,11 +3,12 @@ import {Routes, Route,Navigate} from 'react-router-dom'
 import Results from './Results'
 
 const Routess = () => {
+  // <Route exact path='/' element={<Navigate replace to='/search'/>}/>
+
   return (
     <div>
       <Routes>
-        <Route exact path='/' element={<Navigate replace to='/search'/>}/>
-        <Route path='/search' element={<Results/>}/>
+        <Route path='/' element={<Results/>}/>
         <Route path='/videos' element={<Results/>}/>
         <Route path='/news' element={<Results/>}/>
         <Route path='/images' element={<Results/>}/>
