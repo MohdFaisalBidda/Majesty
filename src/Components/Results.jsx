@@ -9,15 +9,15 @@ const Results = () => {
   const location = useLocation();
 
   useEffect(() => {
-    // if (location.pathname === "/") {
-    //   getallResult(`?q=${searchTerm}&pageSize=40`);
-    // }
-    // if (location.pathname === "/images") {
-    //   getImgResult(`?q=${searchTerm}&pageSize=40`);
-    // }
-    // if (location.pathname === "/news") {
-    //   getNewsResult(`?q=${searchTerm}&pageSize=40`);
-    // }
+    if (location.pathname === "/") {
+      getallResult(`?q=${searchTerm}&pageSize=40`);
+    }
+    if (location.pathname === "/images") {
+      getImgResult(`?q=${searchTerm}&pageSize=40`);
+    }
+    if (location.pathname === "/news") {
+      getNewsResult(`?q=${searchTerm}&pageSize=40`);
+    }
 
     console.log(location.pathname);
   }, [searchTerm, location.pathname])
