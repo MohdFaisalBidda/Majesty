@@ -27,12 +27,12 @@ const Results = () => {
   switch (location.pathname) {
     case '/':
       return (
-        <div className="min-h-screen flex justify-center flex-wrap space-y-6 sm:px-56">
+        <div className="min-h-screen flex justify-center flex-wrap space-y-6 sm:px-56 overflow-hidden">
           {allResult?.value?.map(({ title, url }, i) => {
             return (
               <div key={i} className=" w-full h-full px-4 my-4">
                 <a href={url} target="_blank" rel="noreferrer">
-                  <p className="text-sm dark:text-gray-400">{url ? url.slice(0,100): url}</p>
+                  <p className="text-sm dark:text-gray-400 break-words">{url ? url.slice(0,100): url}</p>
                 </a>
                 <p className="text-xl hover:underline text-purple-500 font-primary dark:text-secondary">
                   <a href={url} target="_blank" rel="noreferrer">
@@ -51,11 +51,11 @@ const Results = () => {
           {newsResult?.value?.map(({ url, title, description },i) => {
             return (
               <div key={i} className=" w-full h-full px-4 my-4 py-2">
-                <h4 className="dark:text-gray-400 ">{title}</h4>
+                <h4 className="dark:text-gray-400 break-words">{title}</h4>
                 <a href={url} target="_blank" rel="noreferrer">
-                  <h3 className="text-xl text-purple-500 dark:text-secondary hover:underline">{url ? url.slice(0,45):url}</h3>
+                  <h3 className="text-xl text-purple-500 dark:text-secondary hover:underline break-words">{url ? url.slice(0,45):url}</h3>
                 </a>
-                <div className="flex flex-wrap dark:text-gray-300 text-gray-500">
+                <div className="flex flex-wrap dark:text-gray-300 text-gray-500 break-words">
                   <p >{description ? description.slice(0, 100) : description}...</p>
                 </div>
 
