@@ -9,7 +9,7 @@ const App = () => {
 
   return (
     <div className={darkMode ? 'dark' : ''}>
-      <div className='bg-gray-100 dark:bg-amber-200 w-full h-screen'>
+      <div className='bg-slate-100 dark:bg-primary flex flex-col w-full min-h-screen'>
         <NavBar darkMode={darkMode} setDarkMode={setDarkMode}/>
         <Routess/>
         <Footer/>

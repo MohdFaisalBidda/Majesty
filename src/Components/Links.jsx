@@ -5,16 +5,15 @@ const Links = () => {
 
     const links = [
         { url: "/", text: "🔍All" },
-        { url: "/news", text: "🗞 News" },
-        { url: "/images", text: "Images" },
-        { url: "/videos", text: "📹 Videos" }
+        { url: "/images", text: "📷Images" },
+        { url: "/news", text: "📰News" }
     ]
 
     return (
-        <div className='flex sm:justify-around justify-between items-center mt-4'>
+        <div className='flex sm:justify-start items-center mt-8 border-b border-blue-600 dark:border-secondary mx-4'>
             {links.map(({url,text},i)=>{
                 return(
-                <NavLink key={i} to={url} className="">
+                <NavLink key={i} to={url}  className="tracking-widest font-bold text-blue-500 dark:text-secondary text-lg font-primary mx-8 ">
                     {text}
                 </NavLink>
                 )

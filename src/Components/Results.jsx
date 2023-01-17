@@ -1,29 +1,44 @@
 import React, { useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import { useResultContext } from "../contexts/ResultContextProvider.js";
+import Loader from "./Loader.jsx";
 
 
 const Results = () => {
-  const { getResults, results, searchTerm, isLoading } = useResultContext();
+  const { allResult, imgResult, newsResult, searchTerm, isLoading, getallResult, getImgResult, getNewsResult } = useResultContext();
   const location = useLocation();
 
   useEffect(() => {
-    // getResults('?q=javascript');
-    // console.log(results);
-  }, [])
+    // if (location.pathname === "/") {
+    //   getallResult(`?q=${searchTerm}&pageSize=40`);
+    // }
+    // if (location.pathname === "/images") {
+    //   getImgResult(`?q=${searchTerm}&pageSize=40`);
+    // }
+    // if (location.pathname === "/news") {
+    //   getNewsResult(`?q=${searchTerm}&pageSize=40`);
+    // }
 
-  if (isLoading) return "Loading"
+    console.log(location.pathname);
+  }, [searchTerm, location.pathname])
+
+  if (isLoading) return <Loader />
 
   switch (location.pathname) {
     case '/':
       return (
-        <div className="flex justify-center flex-wrap space-y-6 sm:px-56">
-          {results?.value?.map(({ title, url, description }) => {
+        <div className="min-h-screen flex justify-center flex-wrap space-y-6 sm:px-56">
+          {allResult?.value?.map(({ title, url }, i) => {
             return (
-              <div>
-                <h3>{url}</h3>
-                <h1>{title}</h1>
-                <p>{description}</p>
+              <div key={i} className=" w-full h-full px-4 my-4">
+                <a href={url} target="_blank" rel="noreferrer">
+                  <p className="text-sm dark:text-gray-400">{url ? url.slice(0,100): url}</p>
+                </a>
+                <p className="text-xl hover:underline text-purple-500 font-primary dark:text-secondary">
+                  <a href={url} target="_blank" rel="noreferrer">
+                    {title}
+                  </a>
+                </p>
               </div>
             )
           })}
@@ -31,13 +46,42 @@ const Results = () => {
       )
 
     case '/news':
-      return 'news'
+      return (
+        <div className="w-full min-h-screen flex justify-center flex-wrap space-y-6 sm:px-56">
+          {newsResult?.value?.map(({ url, title, description },i) => {
+            return (
+              <div key={i} className=" w-full h-full px-4 my-4 py-2">
+                <h4 className="dark:text-gray-400 ">{title}</h4>
+                <a href={url} target="_blank" rel="noreferrer">
+                  <h3 className="text-xl text-purple-500 dark:text-secondary hover:underline">{url ? url.slice(0,45):url}</h3>
+                </a>
+                <div className="flex flex-wrap dark:text-gray-300 text-gray-500">
+                  <p >{description ? description.slice(0, 100) : description}...</p>
+                </div>
 
-    case '/videos':
-      return 'videos'
+              </div>
+            )
+          })}
+        </div>
+      )
 
     case '/images':
-      return 'images'
+      return (
+        <div className="min-h-screen grid xl:grid-cols-5 gap-5 text-center mt-8 ">
+          {imgResult?.value?.map(({ url, title, thumbnail }, i) => {
+            return (
+              <div key={i} className="py-4 mx-4 shadow-xl shadow-slate-200 dark:shadow-xl dark:shadow-black">
+                <img src={thumbnail} alt={title} loading="lazy" className=" h-60 object-contain mx-auto" />
+                <div className="">
+                  <a className="" href={url} key={i} target="_blank" rel="noreferrer">
+                    <p className="text-purple-500 dark:text-secondary mt-2 hover:underline">{title}</p>
+                  </a>
+                </div>
+              </div>
+            )
+          })}
+        </div>
+      )
 
     default:
       return 'Error'
