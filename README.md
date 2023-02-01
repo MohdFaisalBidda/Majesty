@@ -45,7 +45,7 @@ To deploy this project run
 
  ![React](https://img.shields.io/badge/React-black?style=for-the-badge)
 
- ![Tailwind-CSS](https://img.shields.io/badge/Tailwind CSS-black?style=for-the-badge)
+ ![Tailwind-CSS](https://img.shields.io/badge/Tailwind%20CSS-black?style=for-the-badge)
  
 
 ## 🔗 Links
